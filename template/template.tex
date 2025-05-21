@@ -1,0 +1,294 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       CV TEMPLATE CONFIGURATION FILE                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ----------------------------------------------------------------------
+% 1. PACKAGE IMPORTS
+% ----------------------------------------------------------------------
+\usepackage[
+    ignoreheadfoot,
+    top=1.2 cm,      % was 2 cm; decrease to move header up
+    bottom=1.2 cm,   % was 2 cm; decrease to move footer down
+    left=2 cm,
+    right=2 cm,
+    footskip=1.2 cm, % adjust if needed for footer spacing
+    % showframe % for debugging 
+]{geometry} % Page geometry
+
+\usepackage[explicit]{titlesec} % Section title customization
+\usepackage{tabularx}           % Tables with fixed width columns
+\usepackage{array}              % Required by tabularx
+\usepackage[dvipsnames]{xcolor} % Color definitions
+\usepackage{enumitem}           % Custom lists
+\usepackage{fontawesome5}       % Icons
+\usepackage{amsmath}            % Math support
+\usepackage[
+    pdftitle={\cvName's CV},
+    pdfauthor={\cvName},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}                     % Links, metadata, bookmarks
+
+\usepackage[pscoord]{eso-pic}   % Floating text on the page
+\usepackage{calc}               % Length calculations
+\usepackage{bookmark}           % PDF bookmarks
+\usepackage{lastpage}           % Total number of pages
+\usepackage{changepage}         % adjustwidth environment
+\usepackage{paracol}            % Multi-column entries
+\usepackage{ifthen}             % Conditional statements
+\usepackage{needspace}          % Avoid page break after section title
+\usepackage{iftex}              % Engine detection
+\usepackage{xparse}             % Advanced command parsing
+
+% ----------------------------------------------------------------------
+% 2. COLOR AND FONT DEFINITIONS
+% ----------------------------------------------------------------------
+\definecolor{primaryColor}{RGB}{0, 79, 144} % Main color
+
+% Ensure machine-readable/ATS-parsable PDF:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage[default, type1]{sourcesanspro} % Main font
+
+% ----------------------------------------------------------------------
+% 3. PDF METADATA (Override with parameters if needed)
+% ----------------------------------------------------------------------
+% (Set via hyperref below; now parameterized via main.tex)
+
+% ----------------------------------------------------------------------
+% 4. PAGE LAYOUT AND GENERAL SETTINGS
+% ----------------------------------------------------------------------
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % Remove space before adjustwidth
+\pagestyle{empty}                              % No header/footer by default
+\setcounter{secnumdepth}{0}                    % No section numbering
+\setlength{\parindent}{0pt}                    % No paragraph indent
+\setlength{\topskip}{0pt}                      % No top skip
+\setlength{\columnsep}{0.15cm}                 % Column separation
+
+% ----------------------------------------------------------------------
+% 5. SECTION FORMATTING
+% ----------------------------------------------------------------------
+
+% Custom section title format
+\titleformat{\section}{
+    \needspace{4\baselineskip}
+    \Large\color{primaryColor}
+}{
+}{
+}{
+    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
+}[]
+
+\titlespacing{\section}{
+    -1pt
+}{
+    0.3 cm
+}{
+    0.2 cm
+}
+
+% ----------------------------------------------------------------------
+% 6. CUSTOM ENVIRONMENTS
+% ----------------------------------------------------------------------
+% Highlights (bulleted lists)
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+% Highlights for bullet entries (tighter margin)
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+}
+
+% One-column entry (indented block)
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+}
+
+% Two-column entry (main content | date/location)
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+% Three-column entry (label | main content | date/location)
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{1 cm, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+% Header block (centered, colored)
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
+}{
+    \par\kern\topsep
+}
+
+% ----------------------------------------------------------------------
+% 7. HEADER/FOOTER AND UTILITY COMMANDS
+% ----------------------------------------------------------------------
+% Custom footer style (can be overridden)
+% \let\ps@customFooterStyle\ps@plain
+% \patchcmd{\ps@customFooterStyle}{\thepage}{
+%     \color{gray}\textit{\small Page \thepage{} of \pageref*{LastPage}}
+% }{}{}
+
+% Remove or comment out the following line if you are not using \patchcmd or custom footer logic:
+% \let\ps@customFooterStyle\ps@plain
+
+% \let\ps@customFooterStyle\ps@plain   % <-- REMOVE OR COMMENT OUT THIS LINE
+% \pagestyle{customFooterStyle}        % <-- REMOVE OR COMMENT OUT THIS LINE
+
+% Place last updated text (optional)
+\newcommand{\placelastupdatedtext}{%
+  \AddToShipoutPictureFG*{%
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in \cvLastUpdated}\hspace{\widthof{Last updated in \cvLastUpdated}}
+    }}}%
+  }%
+}%
+
+% ----------------------------------------------------------------------
+% 8. PERSONAL INFO PARAMETERS (to be set in main.tex)
+% ----------------------------------------------------------------------
+% \cvName         - Name and Surname
+% \cvBirthDate    - Date of Birth
+% \cvPhone        - Phone Number
+% \cvEmail        - Email Address
+% \cvCity         - City, Country
+% \cvLinkedIn     - LinkedIn username
+% \cvLinkedInURL  - LinkedIn profile URL
+% \cvGithub       - GitHub username
+% \cvGithubURL    - GitHub profile URL
+% \cvCopyright    - Copyright/consent text
+
+% ----------------------------------------------------------------------
+% 9. LINK HANDLING
+% ----------------------------------------------------------------------
+% Save original href command
+\let\hrefWithoutArrow\href
+
+% New command for external links (with icon)
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+% ----------------------------------------------------------------------
+% 10. GENERAL UTILITY COMMANDS AND ENVIRONMENTS
+% ----------------------------------------------------------------------
+
+% Horizontal separator for header fields
+\newcommand{\AND}{\unskip
+    \cleaders\copy\ANDbox\hskip\wd\ANDbox
+    \ignorespaces
+}
+\newsavebox\ANDbox
+\sbox\ANDbox{}
+
+% Entry with date separator (for education, etc.)
+\newlength{\entryWithDateSep}
+\setlength{\entryWithDateSep}{0.75em}   % ← tweak this to taste
+
+\NewDocumentEnvironment{entrywithdate}{ m m m m }{%
+  \onecolentry
+  \noindent
+  % #1 = Degree      → bold
+  % #2 = University  → bold
+  % #3 = Course      → normal
+  % #4 = Date        → right‑aligned via \hfill
+  \textbf{#1}\hspace{\entryWithDateSep}% degree ↔ university
+  \textbf{#2},% university ↔ course (with comma)
+  #3
+  \hfill
+  #4
+  \par\nopagebreak
+}{%
+  \endonecolentry
+}
+
+% ----------------------------------------------------------------------
+% 11. HEADER FUNCTIONALITY
+% ----------------------------------------------------------------------
+
+% Individual header field macros (to be defined in main.tex as needed)
+% Example:
+% \newcommand{\cvBirthDateField}{\mbox{{\footnotesize\faUser}\hspace*{0.13cm}\cvBirthDate}}
+% If not used, define as empty: \newcommand{\cvBirthDateField}{}
+
+% Header rendering command: takes 5 fields (can be empty)
+\newcommand{\cvHeader}[5]{%
+    \begin{header}
+        \fontsize{30 pt}{30 pt}
+        \textbf{\cvName}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        #1%
+        \ifx&#2&\else\kern 0.25 cm\AND\kern 0.25 cm#2\fi%
+        \ifx&#3&\else\kern 0.25 cm\AND\kern 0.25 cm#3\fi%
+        \ifx&#4&\else\kern 0.25 cm\AND\kern 0.25 cm#4\fi%
+        \ifx&#5&\else\kern 0.25 cm\AND\kern 0.25 cm#5\fi%
+
+        \vspace{0.1 cm} % adjust spacing between header and content
+    \end{header}
+}
+
+% ----------------------------------------------------------------------
+% 12. FOOTER FUNCTIONALITY
+% ----------------------------------------------------------------------
+
+% Footer rendering command: prints copyright centered at the bottom
+\newcommand{\cvFooter}{%
+    \vfill
+    \begin{center}
+        \color{gray}\textit{\small 
+        \cvCopyright
+        }
+    \end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

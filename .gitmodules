@@ -1,0 +1,3 @@
+[submodule "latex-build"]
+	path = latex-build
+	url = https://github.com/eliainnocenti/latex-build.git

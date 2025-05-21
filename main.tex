@@ -1,0 +1,54 @@
+\documentclass[10pt, letterpaper]{article}
+
+% --- Personal Info Parameters ---
+\newcommand{\cvName}{Elia Innocenti}
+\newcommand{\cvBirthDate}{August 20, 2002}
+\newcommand{\cvPhone}{+39 334 229 8865}
+\newcommand{\cvEmail}{elia.innocenti@icloud.com}
+\newcommand{\cvCity}{Turin, Italy}
+\newcommand{\cvLinkedIn}{eliainnocenti}
+\newcommand{\cvLinkedInURL}{https://linkedin.com/in/eliainnocenti}
+\newcommand{\cvGithub}{eliainnocenti}
+\newcommand{\cvGithubURL}{https://github.com/eliainnocenti}
+\newcommand{\cvPersonalWebsite}{yourwebsite.com}
+\newcommand{\cvPersonalWebsiteURL}{https://yourwebsite.com}
+\newcommand{\cvCopyright}{© 2025 Elia Innocenti. All rights reserved. \\ According to law 679/2016 of the Regulation of the European Parliament of 27th April 2016, \\ I hereby express my consent to process and use my data provided in this CV and application for recruiting purposes.}
+\newcommand{\cvLastUpdated}{May 2025}
+% --- End Personal Info Parameters ---
+
+% --- Header Field Definitions ---
+\newcommand{\cvBirthDateField}{\mbox{{\footnotesize\faUser}\hspace*{0.13cm}\cvBirthDate}}
+\newcommand{\cvPhoneField}{\mbox{{\footnotesize\faPhone}\hspace*{0.13cm}\cvPhone}}
+\newcommand{\cvEmailField}{\mbox{\hrefWithoutArrow{mailto:\cvEmail}{{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}\cvEmail}}}
+\newcommand{\cvCityField}{\mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}\cvCity}}
+\newcommand{\cvLinkedInField}{\mbox{\hrefWithoutArrow{\cvLinkedInURL}{{\footnotesize\faLinkedinIn}\hspace*{0.13cm}\cvLinkedIn}}}
+\newcommand{\cvGithubField}{\mbox{\hrefWithoutArrow{\cvGithubURL}{{\footnotesize\faGithub}\hspace*{0.13cm}\cvGithub}}}
+\newcommand{\cvPersonalWebsiteField}{\mbox{\hrefWithoutArrow{\cvPersonalWebsiteURL}{{\footnotesize\faGlobe}\hspace*{0.13cm}\cvPersonalWebsite}}}
+% --- End Header Field Definitions ---
+
+% Choose which 5 fields to show (in order), leave others unused
+% Example: BirthDate, Phone, Email, City, LinkedIn
+% If you want to show Github or PersonalWebsite, swap them in below
+
+\input{template/template.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+    % \placelastupdatedtext
+
+    \cvHeader{\cvBirthDateField}{\cvPhoneField}{\cvEmailField}{\cvCityField}{\cvLinkedInField}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+    \input{sections/summary.tex}
+    \input{sections/education.tex}
+    \input{sections/experience.tex}
+    \input{sections/licenses-certifications.tex}
+    \input{sections/skills-technologies.tex}
+    \input{sections/languages.tex}
+    
+    \cvFooter % Contains the copyright text
+
+\end{document}
