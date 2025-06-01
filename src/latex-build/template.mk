@@ -1,4 +1,5 @@
 # Template configuration for your LaTeX project.
+# Copy this file to ../local.mk using the 'make -C latex-build init' command and update the values below.
 
 # Specify the command for LaTeX (default: pdflatex).
 # This is the tool used to compile your LaTeX source files into a PDF.
@@ -29,12 +30,12 @@ OUTPUT_DIR = out
 
 # Enable or disable copying the output PDF to a specific directory with a specific name (default: false).
 # Set this to "true" to enable the feature.
-COPY_SPECIFIC = true
+COPY_SPECIFIC = false
 
 # Specify the directory where the renamed PDF should be copied (e.g., final/).
 # This is the target directory for the renamed PDF. Leave empty if COPY_SPECIFIC is false.
-SPECIFIC_DIR = docs/
+SPECIFIC_DIR = 
 
 # Specify the new name for the copied PDF (e.g., final_output.pdf).
 # This is the new name for the PDF file in the SPECIFIC_DIR. Leave empty if COPY_SPECIFIC is false.
-SPECIFIC_PDF = Curriculum_Vitae.pdf
+SPECIFIC_PDF =
