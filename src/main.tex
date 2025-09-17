@@ -3,6 +3,7 @@
 % --- Personal Info Parameters ---
 \newcommand{\cvName}{Elia Innocenti}
 \newcommand{\cvBirthDate}{August 20, 2002}
+\newcommand{\cvMessage}{Willing to relocate}
 \newcommand{\cvPhone}{+39 334 229 8865}
 \newcommand{\cvEmail}{elia.innocenti@icloud.com}
 \newcommand{\cvCity}{Turin, Italy}
@@ -18,6 +19,7 @@
 
 % --- Header Field Definitions ---
 \newcommand{\cvBirthDateField}{\mbox{{\footnotesize\faUser}\hspace*{0.13cm}\cvBirthDate}}
+\newcommand{\cvMessageField}{\mbox{{\footnotesize\faPlane}\hspace*{0.13cm}\cvMessage}}
 \newcommand{\cvPhoneField}{\mbox{{\footnotesize\faPhone}\hspace*{0.13cm}\cvPhone}}
 \newcommand{\cvEmailField}{\mbox{\hrefWithoutArrow{mailto:\cvEmail}{{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}\cvEmail}}}
 \newcommand{\cvCityField}{\mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}\cvCity}}
@@ -27,7 +29,7 @@
 % --- End Header Field Definitions ---
 
 % Choose which 5 fields to show (in order), leave others unused
-% Example: BirthDate, Phone, Email, City, LinkedIn
+% Example: Message, Phone, Email, City, LinkedIn
 % If you want to show Github or PersonalWebsite, swap them in below
 
 \input{template/template.tex}
@@ -38,16 +40,18 @@
 
     % \placelastupdatedtext
 
-    \cvHeader{\cvBirthDateField}{\cvPhoneField}{\cvEmailField}{\cvCityField}{\cvLinkedInField}
+    \cvHeader{\cvPhoneField}{\cvEmailField}{\cvLinkedInField}{\cvCityField}{\cvMessageField}
 
     \vspace{0.3 cm - 0.3 cm}
 
     \input{sections/summary.tex}
     \input{sections/education.tex}
     \input{sections/experience.tex}
-    \input{sections/licenses-certifications.tex}
+    \input{sections/projects.tex}
     \input{sections/skills-technologies.tex}
-    \input{sections/languages.tex}
+    % \input{sections/licenses-certifications.tex}
+    % \input{sections/languages.tex}
+    \input{sections/_merged-certs-languages.tex}
     
     \cvFooter % Contains the copyright text
 

@@ -1,4 +1,63 @@
 % ---------------------------
-% Projects Section (to be filled)
+% Projects Section
 % ---------------------------
-% Add your project entries here using the appropriate environment.
+
+\section{Some Projects}
+
+% Temporarily override \href to remove external link arrow for this section
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{#2}}
+
+\begin{sidebyprojects}
+    % Left column - First project
+    \projectentry{
+        \textbf{\mbox{\hrefWithoutArrow{https://github.com/eliainnocenti/Service-Mesh}{{\footnotesize\faGithub}\hspace*{0.13cm}}}Service Mesh Research}, @ PoliTo
+        \begin{highlights}
+            \item Analysis of service mesh architectures and security
+            \item Comparative study of cloud-native implementations
+        \end{highlights}
+    }{
+        % Dates
+    }
+    
+    \switchproject
+    
+    % Right column - Second project
+    \projectentry{
+        \textbf{\mbox{\hrefWithoutArrow{https://github.com/eliainnocenti/Secure-Timeout-System-NXPS32K3X8EVB}{{\footnotesize\faGithub}\hspace*{0.13cm}}}Secure Timeout System on NXP}, @ PoliTo
+        \begin{highlights}
+            \item QEMU emulation with FreeRTOS integration
+            \item Multi-task secure timeout with UART comms
+        \end{highlights}
+    }{
+        % Dates
+    }
+\end{sidebyprojects}
+
+\begin{sidebyprojects}
+    % Left column - Third project
+    \projectentry{
+        \textbf{\mbox{\hrefWithoutArrow{https://github.com/eliainnocenti/SSH-Shell-Attacks}{{\footnotesize\faGithub}\hspace*{0.13cm}}}SSH Shell Attacks Analysis}, @ PoliTo
+        \begin{highlights}
+            \item ML classification of 230k SSH attacks
+            \item Pattern analysis with clustering and NLP
+        \end{highlights}
+    }{
+        % Dates
+    }
+    
+    \switchproject
+    
+    % Right column - Fourth project
+    \projectentry{
+        \textbf{\mbox{\hrefWithoutArrow{https://github.com/eliainnocenti/ReInHerit-SmartTourism}{{\footnotesize\faGithub}\hspace*{0.13cm}}}ReInHerit - Smart Tourism}, @ UniFi
+        \begin{highlights}
+            \item Android app for monument object detection
+            \item Computer vision alternative to image retrieval
+        \end{highlights}
+    }{
+        % Dates
+    }
+\end{sidebyprojects}
+
+% Restore \href to include external link arrow for the rest of the document
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}

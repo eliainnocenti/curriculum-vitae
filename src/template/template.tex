@@ -7,7 +7,7 @@
 % ----------------------------------------------------------------------
 \usepackage[
     ignoreheadfoot,
-    top=1.2 cm,      % was 2 cm; decrease to move header up
+    top=0.9 cm,      % was 2 cm; decrease to move header up
     bottom=0.5 cm,   % was 2 cm; decrease to move footer down
     left=2 cm,
     right=2 cm,
@@ -66,11 +66,11 @@
 % 4. PAGE LAYOUT AND GENERAL SETTINGS
 % ----------------------------------------------------------------------
 \AtBeginEnvironment{adjustwidth}{\partopsep0pt} % Remove space before adjustwidth
-\pagestyle{empty}                              % No header/footer by default
-\setcounter{secnumdepth}{0}                    % No section numbering
-\setlength{\parindent}{0pt}                    % No paragraph indent
-\setlength{\topskip}{0pt}                      % No top skip
-\setlength{\columnsep}{0.15cm}                 % Column separation
+\pagestyle{empty}                               % No header/footer by default
+\setcounter{secnumdepth}{0}                     % No section numbering
+\setlength{\parindent}{0pt}                     % No paragraph indent
+\setlength{\topskip}{0pt}                       % No top skip
+\setlength{\columnsep}{0.15cm}                  % Column separation
 
 % ----------------------------------------------------------------------
 % 5. SECTION FORMATTING
@@ -104,7 +104,7 @@
         parsep=0.10 cm,
         partopsep=0pt,
         itemsep=0pt,
-        leftmargin=0.4 cm + 10pt
+        leftmargin=0.4 cm + 8pt
     ]
 }{
     \end{itemize}
@@ -166,6 +166,55 @@
     \par\kern\topsep
 }
 
+% Side-by-side sections environment
+% Usage: \begin{sidebysections}[left_width]
+%        Left section content
+%        \switchsection
+%        Right section content
+%        \end{sidebysections}
+\newenvironment{sidebysections}[1][\fill]{
+    \def\leftWidth{#1}
+    \def\rightWidth{\fill}
+    % If left width is \fill, make both columns equal
+    \ifthenelse{\equal{#1}{\fill}}{
+        \setcolumnwidth{0.48\textwidth, 0.48\textwidth}
+    }{
+        \setcolumnwidth{#1, \fill}
+    }
+    \setlength{\columnsep}{0.04\textwidth}
+    \begin{paracol}{2}
+}{
+    \end{paracol}
+}
+
+% Command to switch between sections in sidebysections
+\newcommand{\switchsection}{\switchcolumn}
+
+% Side-by-side project entries (special case for projects)
+% Usage: \begin{sidebyprojects}
+%        \projectentry{content}{date}
+%        \switchproject
+%        \projectentry{content}{date}
+%        \end{sidebyprojects}
+\newenvironment{sidebyprojects}{
+    \setcolumnwidth{0.48\textwidth, 0.48\textwidth}
+    \setlength{\columnsep}{0.04\textwidth}
+    \begin{paracol}{2}
+}{
+    \end{paracol}
+    \vspace{-0.2cm}
+}
+
+% Project entry command (for use within sidebyprojects)
+\newcommand{\projectentry}[2]{
+    \begin{adjustwidth}{0.2 cm + 0.00001 cm}{0.2 cm + 0.00001 cm}
+        #1 \hfill #2
+    \end{adjustwidth}
+}
+
+% Switch command for projects
+\newcommand{\switchproject}{\switchcolumn}
+
 % ----------------------------------------------------------------------
 % 7. HEADER/FOOTER AND UTILITY COMMANDS
 % ----------------------------------------------------------------------
@@ -198,6 +247,7 @@
 % ----------------------------------------------------------------------
 % \cvName         - Name and Surname
 % \cvBirthDate    - Date of Birth
+% \cvMessage      - Small Message
 % \cvPhone        - Phone Number
 % \cvEmail        - Email Address
 % \cvCity         - City, Country
