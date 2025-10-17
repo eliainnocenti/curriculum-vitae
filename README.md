@@ -1,5 +1,8 @@
 # Curriculum Vitae
 
+> [!NOTE]  
+> This is my CV: [`Curriculum_Vitae.pdf`](docs/Curriculum_Vitae.pdf)
+
 This repository contains my personal CV, typeset in LaTeX and built using my modular [`latex-build`](https://github.com/eliainnocenti/latex-build) environment. The structure is designed for easy reuse: you can take the template and adapt it for your own needs.
 
 ## Features

@@ -3,3 +3,6 @@
 
 # Exclude out directory
 out/
+
+# Other files
+extra/

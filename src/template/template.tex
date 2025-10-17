@@ -7,10 +7,10 @@
 % ----------------------------------------------------------------------
 \usepackage[
     ignoreheadfoot,
-    top=0.9 cm,      % was 2 cm; decrease to move header up
+    top=1.2 cm,      % was 2 cm; decrease to move header up
     bottom=0.5 cm,   % was 2 cm; decrease to move footer down
-    left=2 cm,
-    right=2 cm,
+    left=1.2 cm,     % was 2 cm; 
+    right=1.2 cm,    % was 2 cm; 
     footskip=1.2 cm, % adjust if needed for footer spacing
     % showframe % for debugging 
 ]{geometry} % Page geometry
@@ -138,7 +138,19 @@
 \newenvironment{twocolentry}[2][]{
     \onecolentry
     \def\secondColumn{#2}
-    \setcolumnwidth{\fill, 4.5 cm}
+    \setcolumnwidth{\fill, 3.1 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+% Larger two-column entry (main content | date/location)
+\newenvironment{twocolentryL}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 2.7 cm}
     \begin{paracol}{2}
 }{
     \switchcolumn \raggedleft \secondColumn
